@@ -3,6 +3,7 @@
 Created on Mon Sep 19 21:43:51 2016
 
 @author: mhewelt
+Licence: GNU3.0
 """
 import csv
 import serial
@@ -39,7 +40,7 @@ while 1 :
     time.sleep(0.01)
     while ser.inWaiting() > 0:
         out = ser.readline()
-        print('Received: ' + out + 'Lenght: ' + str(len(out)) + ' (bytes)')
+        print('Received: ' + str(out) + 'Lenght: ' + str(len(out)) + ' (bytes)')
 
 
     #Load step paramters
@@ -59,9 +60,10 @@ while 1 :
 
         
     #Start event from Arduino
-    if out[0:4] == 'C000' :
+    if out[0:4] == b'C000' :
             print('Sending step no.: ' + str(StepNo) + '\r\n')
             print(dataStr + '\r\n')
+             #TODO - Line below, issue here, Arduino accepts this, but it doesn't recognise it as a string...
             ser.write(dataStr)
             StepNo += 1
 
@@ -73,7 +75,7 @@ while 1 :
         
     
     #Exit event from Arduino
-    if out[0:4] == 'C999':
+    if out[0:4] == b'C999':
         print('Exit')
         ser.close()
         exit()
