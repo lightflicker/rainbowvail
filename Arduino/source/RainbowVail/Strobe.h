@@ -1,8 +1,12 @@
 
-/*--------------------------------------------------------------------
+/*-----------------------------------------------------------------------
+
+  Author: M.Hewelt
+  Updated on: 15/5/2019
+  Licence: GPL-3.0
+  
   This file is part of the Strobe library
 
-  <http://www.gnu.org/licenses/>.
   --------------------------------------------------------------------*/
 #include <Adafruit_NeoPixel.h>
 #include <RGBConverter.h>
