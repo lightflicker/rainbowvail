@@ -2,15 +2,12 @@
 <p>Deep relaxation and spiritual advancement</p>
 <img src="Docs/Pictures/logo.png" alt="Goggles"> 
 </br>
-<h2>Basic usage</h2>
-<h3>Set Overview</h3>
+<h2>Set overview</h2>
 <p>The RainbowVail is made up of two parts. The first part is the goggle set,
-which contains the actual lights and the Arduino Nano board. In the prototype
-the Nano board is attached to the goggles along with the set of two Adafruit
-addressable LEDs.</p>
-<p>The second part is called a sequencer is it can be made of a PC with a USB port
-running Python.</p>
-<h3>Executing Sequencer Script</h3>
-<h3>Sequence file</h3>
-
-
+  which contains the actual lights and the Arduino Nano board. In the prototype
+  the Nano board is attached to the goggles along with the set of two Adafruit
+  addressable LEDs. The Nano board contains a definition of the basic light patterns,
+  the building blocks of the light sequence. These light patterns are activated in
+  a configurable sequence by the sequencer run from Raspberry Pi.
+  The configuration of the sequence would determine parameters such as flicker
+  frequency or level.</p>
