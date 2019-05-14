@@ -2,8 +2,8 @@
 """
 Created on Mon Sep 19 21:43:51 2016
 
-@author: mhewelt
-Licence: GNU3.0
+@author: M.Hewelt
+Licence: GPL-3.0
 """
 import csv
 import serial
