@@ -3,6 +3,7 @@
 Created on Mon Sep 19 21:43:51 2016
 
 @author: mhewelt
+Licence: GNU3.0
 """
 import csv
 import serial
@@ -13,7 +14,7 @@ import time
 
 seq = []
 
-reader = csv.DictReader(open(sys.argv[1],'rb'))
+reader = csv.DictReader(open(sys.argv[1],'rt',encoding="utf8"))
 for line in reader:
     seq.append(line)
 
@@ -29,7 +30,7 @@ ser = serial.Serial(
 #time.sleep(2)
 out = ''
 
-print 'Enter your commands below.\r\nInsert "exit" to leave the application.'
+print ('Enter your commands below.\r\nInsert "exit" to leave the application.')
 
 input=1
 StepNo = 0
@@ -39,7 +40,7 @@ while 1 :
     time.sleep(0.01)
     while ser.inWaiting() > 0:
         out = ser.readline()
-        print('Received: ' + out + 'Lenght: ' + str(len(out)) + ' (bytes)')
+        print('Received: ' + out.decode('utf-8') + 'Lenght: ' + str(len(out)) + ' (bytes)')
 
 
     #Load step paramters
@@ -54,15 +55,13 @@ while 1 :
     dataStr +=  Delimiter + str(seq[StepNo]['fStrb_H_Off']) + Delimiter + str(seq[StepNo]['fStrb_S_Off']) + Delimiter + str(seq[StepNo]['fStrb_L_Off'])
     dataStr +=  Delimiter + str(seq[StepNo]['lSeqTime'])
     dataStr +=  ">"
-        
 
 
-        
     #Start event from Arduino
-    if out[0:4] == 'C000' :
+    if out[0:4] == b'C000' :
             print('Sending step no.: ' + str(StepNo) + '\r\n')
             print(dataStr + '\r\n')
-            ser.write(dataStr)
+            ser.write(dataStr.encode('utf-8'))
             StepNo += 1
 
     #Collect next step
@@ -70,12 +69,10 @@ while 1 :
         print('Last step has been reached. Exit')
         ser.close()
         exit()
-        
-    
     #Exit event from Arduino
-    if out[0:4] == 'C999':
+    if out[0:4] == b'C999':
         print('Exit')
         ser.close()
         exit()
-    
+
     out = ''
