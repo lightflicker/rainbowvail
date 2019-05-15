@@ -1,3 +1,9 @@
+/*
+  Author: M.Hewelt
+  Updated on: 15/5/2019
+  Licence: GPL-3.0
+*/
+
 //#include <RGBConverter.h>
 #include <Arduino.h>
 //#include <WString.h>
