@@ -11,3 +11,10 @@
   a configurable sequence by the sequencer run from Raspberry Pi.
   The configuration of the sequence would determine parameters such as flicker
   frequency or level.</p>
+<h2>Simple Sequencer usage</2>
+<p>Once the goggles are connected to the USB port, the sequencer can be invoke with
+  the following commands:</p>
+<code>>cd Sequencer</code></br>
+<code>>source bin/activate</code></br>
+<code>>python RainbowVail.py Sequences/RainbowVail_Seq005_20161014.csv</code></br>
+  
