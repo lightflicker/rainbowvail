@@ -1,6 +1,6 @@
 <h1>Rainbow Vail</h1>
-<p>Deep relaxation and spiritual advancement</p>
-<img src="Docs/Pictures/logo.png" alt="Goggles"> 
+<p><bold>For deep relaxation and spiritual advancement</bold></p>
+<img src="Docs/Pictures/logo.png" alt="Goggles" width="450"> 
 </br>
 <h2>Set overview</h2>
 <p>The RainbowVail is made up of two parts. The first part is the goggle set,
