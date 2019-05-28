@@ -14,7 +14,7 @@ import time
 
 seq = []
 
-reader = csv.DictReader(open(sys.argv[1],'rt',encoding="utf8"))
+reader = csv.DictReader(open(sys.argv[1], 'rt', encoding="utf8"))
 for line in reader:
     seq.append(line)
 
@@ -30,12 +30,12 @@ ser = serial.Serial(
 #time.sleep(2)
 out = ''
 
-print ('Enter your commands below.\r\nInsert "exit" to leave the application.')
+print('Enter your commands below.\r\nInsert "exit" to leave the application.')
 
-input=1
+input = 1
 StepNo = 0
 Delimiter = ';'
-while 1 :
+while 1:
     #Collect the data if ready for collection
     time.sleep(0.01)
     while ser.inWaiting() > 0:
@@ -44,8 +44,8 @@ while 1 :
 
 
     #Load step paramters
-    dataStr =   "<" + str(seq[StepNo]['iTypeC']) 
-    dataStr +=  Delimiter + str(seq[StepNo]['fCtr_A'])+Delimiter+str(seq[StepNo]['fCtr_B'])+Delimiter+str(seq[StepNo]['fCtr_C'])+Delimiter+str(seq[StepNo]['fCtr_D'])+Delimiter+str(seq[StepNo]['fCtr_E'])
+    dataStr = "<" + str(seq[StepNo]['iTypeC'])
+    dataStr +=  Delimiter + str(seq[StepNo]['fCtr_A']) + Delimiter + str(seq[StepNo]['fCtr_B']) + Delimiter + str(seq[StepNo]['fCtr_C']) + Delimiter + str(seq[StepNo]['fCtr_D']) + Delimiter + str(seq[StepNo]['fCtr_E'])
     dataStr +=  Delimiter + str(seq[StepNo]['fCtr_H_On'])+Delimiter+str(seq[StepNo]['fCtr_S_On'])+Delimiter+str(seq[StepNo]['fCtr_L_On'])
     dataStr +=  Delimiter + str(seq[StepNo]['fCtr_H_Off'])+Delimiter+str(seq[StepNo]['fCtr_S_Off'])+Delimiter+str(seq[StepNo]['fCtr_L_Off'])
     dataStr +=  Delimiter + str(seq[StepNo]['iTypeS'])
