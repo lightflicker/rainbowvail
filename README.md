@@ -15,19 +15,19 @@
   The configuration of the sequence would determine parameters such as flicker
   frequency or level.</p>
 <h2>Reinstating Python environment</h2>
-In order for the Sequencer to function properly the Python envronment needs to be reinstated.
-Create a directory <i>RainbowVail</i> in a desired place. Within that direcory create directory <i>repo</i>. Clone git repositury into that directory:
-<code>>>cd repo</code>
-<code>>>git clone https://github.com/lightflicker/rainbowvail</code>
-Copy the requrements.txt from <i>repo/Sequencer/requirements.txt</i> to <i>RainbowVail</i>.
-Further find out the path to the <i>python3</i>:
-<code>>>which python3</code>
-<code>/usr/bin/python3</code>
-Create Python virtual environment:
-<code>>>virtualenv -p /usr/bin/python3 .</code>
-Enter virtual environment:
-<code>>>source bin/activate</code>
-Reinstate all dependencies:
+In order for the Sequencer to function properly the Python envronment needs to be reinstated.</br>
+Create a directory <i>RainbowVail</i> in a desired place. Within that direcory create directory <i>repo</i>. Clone git repository into that directory:</br>
+<code>>>cd repo</code></br>
+<code>>>git clone https://github.com/lightflicker/rainbowvail</code></br>
+Copy the <i>requrements.txt</i> from <i>repo/Sequencer</i> to <i>RainbowVail</i>.
+Further find out the path to the <i>python3</i>:</br>
+<code>>>which python3</code></br>
+<code>/usr/bin/python3</code></br>
+Create Python virtual environment:</br>
+<code>>>virtualenv -p /usr/bin/python3 .</code></br>
+Enter virtual environment:</br>
+<code>>>source bin/activate</code></br>
+Reinstate all dependencies:</br>
 <code>>>pip install -r requirements.txt</code>
 </br>
 <h2>Simple Sequencer usage</h2>
