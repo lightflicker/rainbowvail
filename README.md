@@ -34,5 +34,4 @@ Reinstate all dependencies:</br>
 <p>Once the goggles are connected to the USB port, the sequencer can be invoked with
   the following commands:</p>
 <code>>cd Sequencer</code></br>
-<code>>source bin/activate</code></br>
 <code>>python RainbowVail.py Sequences/RainbowVail_Seq005_20161014.csv</code></br>
