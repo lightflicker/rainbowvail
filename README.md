@@ -14,6 +14,22 @@
   a configurable sequence by the sequencer run from Raspberry Pi.
   The configuration of the sequence would determine parameters such as flicker
   frequency or level.</p>
+<h2>Reinstating Python environment</h2>
+In order for the Sequencer to function properly the Python envronment needs to be reinstated.
+Create a directory <i>RainbowVail</i> in a desired place. Within that direcory create directory <i>repo</i>. Clone git repositury into that directory:
+<code>>>cd repo</code>
+<code>>>git clone https://github.com/lightflicker/rainbowvail</code>
+Copy the requrements.txt from <i>repo/Sequencer/requirements.txt</i> to <i>RainbowVail</i>.
+Further find out the path to the <i>python3</i>:
+<code>>>which python3</code>
+<code>/usr/bin/python3</code>
+Create Python virtual environment:
+<code>>>virtualenv -p /usr/bin/python3 .</code>
+Enter virtual environment:
+<code>>>source bin/activate</code>
+Reinstate all dependencies:
+<code>>>pip install -r requirements.txt</code>
+</br>
 <h2>Simple Sequencer usage</h2>
 <p>Once the goggles are connected to the USB port, the sequencer can be invoked with
   the following commands:</p>
