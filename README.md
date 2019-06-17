@@ -8,13 +8,13 @@ The RainbowVail is made up of two parts. The first part is the goggle set, which
 
 ## Reinstating Python environment
 In order for the Sequencer to function properly the Python envronment needs to be reinstated.
-Create a directory **RainbowVail** in a desired place. Within that direcory create directory **repo**. Clone git repository into that directory:
+Create a directory *RainbowVail* in a desired place. Within that direcory create directory *repo*. Clone git repository into that directory:
 ```shell
 cd repo
 git clone https://github.com/lightflicker/rainbowvail
 ```
-Copy the **requrements.txt** from **repo/Sequencer** to **RainbowVail**.
-Further find out the path to the <i>python3</i>:</br>
+Copy the *requrements.txt* from *repo/Sequencer* to *RainbowVail*.
+Further find out the path to the *python3*:
 ```shell
 which python3
 /usr/bin/python3
