@@ -211,19 +211,19 @@ void Strobe::Sequencer()
         type3_CentreR(Step.fCtr_A, Step.fCtr_B, Step.fCtr_C, Step.fCtr_D, Step.fCtr_E, Step.hslCOn, Step.hslCOff, Step.lSeqTime);
         break;
       case 4:
-        //Function to run Type 1 Centre Light
+        //Function to run Type 4 Centre Light
         break;
       case 5:
-        //Function to run Type 1 Centre Light
+        //Function to run Type 5 Centre Light
         break;
       case 6:
-        //Function to run Type 1 Centre Light
+        //Function to run Type 6 Centre Light
         break;
       case 7:
-        //Function to run Type 1 Centre Light
+        //Function to run Type 7 Centre Light
         break;
       case 8:
-        //Function to run Type 1 Centre Light
+        //Function to run Type 8 Centre Light
         break;
 
 
@@ -249,19 +249,19 @@ void Strobe::Sequencer()
         type3_StrobeR(Step.lPattern, Step.fStrb_B, Step.fStrb_D, Step.hslSOn, Step.hslSOff);
         break;
       case 4:
-        //Function to run Type 1 Centre Light
+        //Function to run Type 4 Centre Light
         break;
       case 5:
-        //Function to run Type 1 Centre Light
+        //Function to run Type 5 Centre Light
         break;
       case 6:
-        //Function to run Type 1 Centre Light
+        //Function to run Type 6 Centre Light
         break;
       case 7:
-        //Function to run Type 1 Centre Light
+        //Function to run Type 7 Centre Light
         break;
       case 8:
-        //Function to run Type 1 Centre Light
+        //Function to run Type 8 Centre Light
         break;
       default:
 
@@ -386,6 +386,8 @@ void Strobe::Filter(float nv, float& cv, float a)
 //-----------------------------------------------------------------------------------
 
 // CENTRE - TYPE 1
+// Type 1 produces light transition from c_start HSL to c_end HSL within
+// the given ramp_time in milliseconds
 void Strobe::type1_CentreL(HSL c_start, HSL c_end, unsigned long ramp_time)
 {
   static unsigned long time_start = millis();
@@ -414,6 +416,14 @@ void Strobe::type1_CentreR(HSL c_start, HSL c_end, unsigned long ramp_time)
 
 
 // CENTRE - TYPE 2
+// Type 2 produces light pulses with soft rising and folling edges of
+// the on and off transitons. The soft edges are modelled as exponential
+// function. This produces a similar effect to a hallogen light turning
+// on and off
+// f - Frequency of the pulses
+// fill - Period fill factor where 1 equals always on, 0 always off and
+// 0.5 a half period of on and half period of off
+//
 void Strobe::type2_CentreL(float f, float fill, float a, float phase, HSL c_on, HSL c_off)
 {
   double p;
@@ -509,8 +519,6 @@ void Strobe::type2_CentreR(float f, float fill, float a, float phase, HSL c_on, 
 
   if ((millis() - f_start_time) > 10) //Constant 10ms refresh rate, thus the time constant of attenuation is 10ms
   {
-    // colCentreL.h = (c->h - colCentreL.h) * a + colCentreL.h;
-    // colCentreL.s = (c->s - colCentreL.s) * a + colCentreL.s;
     colCentreR.l = (c->l - colCentreR.l) * a + colCentreR.l;
     f_start_time = millis();
   }
