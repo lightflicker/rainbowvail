@@ -416,7 +416,7 @@ void Strobe::type1_CentreR(HSL c_start, HSL c_end, unsigned long ramp_time)
 
 
 // CENTRE - TYPE 2
-// Type 2 produces light pulses with soft rising and folling edges of
+// Type 2 produces light pulses with soft rising and falling edges of
 // the on and off transitons. The soft edges are modelled as exponential
 // function. This produces a similar effect to a hallogen light turning
 // on and off
