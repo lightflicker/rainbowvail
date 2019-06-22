@@ -15,28 +15,27 @@ from curses import wrapper
 # Initialisation of the dictionary list. The list will hold information
 # about the step paramters
 seq = []
+# Initiate the out variable for collecing the Arduino reponse
+out = ''
+# Initiating StepNo
+StepNo = 0
+# Initiating Delimiter character
+Delimiter = ';'
 
+# Open sequence csv file
 reader = csv.DictReader(open(sys.argv[1], 'rt', encoding="utf8"))
+# Read all lines into the seq list
 for line in reader:
     seq.append(line)
 
-# Definition of Step 0
-# configure the serial connections (the parameters differs on the device
-# you are connecting to)
+# Configure serial connection (the parameters differs idepending
+# on the device you are connecting to)
 ser = serial.Serial(
     port='/dev/ttyUSB0',
     baudrate=38400,
-    timeout=10
-)
-# ser.isOpen()
-# time.sleep(2)
-out = ''
+    timeout=10)
 
-print('Enter your commands below.\r\nInsert "exit" to leave the application.')
 
-input = 1
-StepNo = 0
-Delimiter = ';'
 while 1:
     # Collect the data if ready for collection
     time.sleep(0.01)
