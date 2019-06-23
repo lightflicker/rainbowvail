@@ -35,14 +35,29 @@ ser = serial.Serial(
     baudrate=38400,
     timeout=10)
 
+# Define the main window function
+def main(stdscr):
+    # Make getch non-blocking
+    stdscr.nodelay(True)
+    # Clear window
+    stdscr.clear()
 
-while 1:
-    # Collect the data if ready for collection
-    time.sleep(0.01)
-    while ser.inWaiting() > 0:
-        out = ser.readline()
-        print('Received: ' + out.decode('utf-8') +
-              'Lenght: ' + str(len(out)) + ' (bytes)')
+    # Start the loop of checking the keboard input
+    # and communicating with Arduino
+    while True:
+        # Get key value
+        k = stdscr.getch()
+
+        # Clear keyboard buffer
+        curses.flushinp()
+
+        # Wait for Arduino 10ms and collect the data
+        # if ready for collection
+        time.sleep(0.01)
+        while ser.inWaiting() > 0:
+            out = ser.readline()
+            stdscr.addstr(2,2,'Received: ' + out.decode('utf-8'))
+            stdscr.addstr(3,2,'Lenght: ' + str(len(out)) + ' (bytes)')
 
     # Load step paramters
     dataStr = "<" + str(seq[StepNo]['iTypeC'])
