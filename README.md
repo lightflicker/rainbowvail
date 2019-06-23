@@ -48,8 +48,8 @@ Once the goggles are connected to the USB port, the sequencer can be invoked wit
 cd Sequencer
 python RainbowVail.py Sequences/RainbowVail_Seq005_20161014.csv
 ```
-**Commands** 
-s - Start sequence 
-Arrow Down - make bookmark: *Elapsed time: ...  Step np.: ...* 
-q - Quit sequencer
+## Interface commands  
+**s** -           Start sequence  
+**Arrow Down** -  Make bookmark: *Elapsed time: ...  Step np.: ...*   
+**q** -           Quit sequencer
 
