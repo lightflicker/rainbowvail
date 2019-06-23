@@ -34,13 +34,13 @@ pip install -r requirements.txt
 
 ## Configuring accessing the USB port
 Initially the script may display:
-'''shell
+```shell
 Cannot open /dev/ttyUSB0: Permission denied
-'''
+```
 In order to reoslve this issue add the user to the *dialout* group with the following command:
-'''shell
+```shell
 sudo usermod -a -G dialout <username>
-'''
+```
 
 ## Simple Sequencer usage
 Once the goggles are connected to the USB port, the sequencer can be invoked with the following commands:
