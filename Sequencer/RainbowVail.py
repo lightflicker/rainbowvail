@@ -47,6 +47,8 @@ def main(stdscr):
     # Clear window
     stdscr.clear()
 
+    stdscr.addstr(10, 2, 'BOOKMARKS')
+    stdscr.addstr(11, 2, '------------------------------------------------')
     # Start the loop of checking the keboard input
     # and communicating with Arduino
     while True:
@@ -66,9 +68,9 @@ def main(stdscr):
             break
         elif k == curses.KEY_DOWN:
             bookmarks.append('Elapsed time: '
-                             + '{:10.1f}'.format(time.time() - start_t)
-                             + '       Step no.: ' + str(StepNo - 1))
-            i = 11
+                             + '{:4.1f}'.format(time.time() - start_t)
+                             + 's       Step no.: ' + str(StepNo - 1))
+            i = 12
             for ln in bookmarks:
                 stdscr.addstr(i,2,ln)
                 i += 1
@@ -76,9 +78,12 @@ def main(stdscr):
         # Wait for Arduino 10ms and collect the data
         # if ready for collection
         time.sleep(0.01)
+        if start_cmd:
+            stdscr.addstr(9, 2, 'ELAPSED TIME: ' + '{:4.1f}s'.format(time.time() - start_t))
+
         while ser.inWaiting() > 0:
             out = ser.readline()
-            stdscr.addstr(3,2,'Received: ' + str(out[0:4]))
+            stdscr.addstr(3,2,'Received: ' + str(out[0:14]))
             stdscr.addstr(4,2,'Lenght: ' + str(len(out)) + ' (bytes)')
 
         # Load step paramters
