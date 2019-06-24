@@ -50,6 +50,6 @@ python RainbowVail.py Sequences/RainbowVail_Seq005_20161014.csv
 ```
 ## Interface commands  
 **s** -           Start sequence  
-**Arrow Down** -  Make bookmark: *Elapsed time: ...  Step np.: ...*   
+**Arrow Down** -  Make bookmark: *Elapsed time: ...  Step no.: ...*   
 **q** -           Quit sequencer
 
