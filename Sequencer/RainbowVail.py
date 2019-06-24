@@ -67,7 +67,7 @@ def main(stdscr):
         elif k == curses.KEY_DOWN:
             bookmarks.append('Elapsed time: '
                              + '{:10.1f}'.format(time.time() - start_t)
-                             + '       Step no.: ' + str(StepNo))
+                             + '       Step no.: ' + str(StepNo - 1))
             i = 11
             for ln in bookmarks:
                 stdscr.addstr(i,2,ln)
