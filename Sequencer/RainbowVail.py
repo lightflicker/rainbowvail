@@ -63,10 +63,11 @@ def main(stdscr):
         if k == ord('s'):
             start_cmd = True
             start_t = time.time()
-            stdscr.addstr(0,2,'SEQUENCE STARTED')
+            stdscr.addstr(0,2,'SEQUENCE: ' + sys.argv[1])
         elif k == ord('q'):
+            ser.close()
             break
-        elif k == curses.KEY_DOWN:
+        elif k == ord('0'):
             bookmarks.append('Elapsed time: '
                              + '{:4.1f}'.format(time.time() - start_t)
                              + 's       Step no.: ' + str(StepNo - 1))
@@ -86,37 +87,38 @@ def main(stdscr):
             stdscr.addstr(3,2,'Received: ' + str(out[0:14]))
             stdscr.addstr(4,2,'Lenght: ' + str(len(out)) + ' (bytes)')
 
-        # Load step paramters
-        dataStr = "<" + str(seq[StepNo]['iTypeC'])
-        dataStr += Delimiter + str(seq[StepNo]['fCtr_A'])
-        dataStr += Delimiter + str(seq[StepNo]['fCtr_B'])
-        dataStr += Delimiter + str(seq[StepNo]['fCtr_C'])
-        dataStr += Delimiter + str(seq[StepNo]['fCtr_D'])
-        dataStr += Delimiter + str(seq[StepNo]['fCtr_E'])
-        dataStr += Delimiter + str(seq[StepNo]['fCtr_H_On'])
-        dataStr += Delimiter + str(seq[StepNo]['fCtr_S_On'])
-        dataStr += Delimiter + str(seq[StepNo]['fCtr_L_On'])
-        dataStr += Delimiter + str(seq[StepNo]['fCtr_H_Off'])
-        dataStr += Delimiter + str(seq[StepNo]['fCtr_S_Off'])
-        dataStr += Delimiter + str(seq[StepNo]['fCtr_L_Off'])
-        dataStr += Delimiter + str(seq[StepNo]['iTypeS'])
-        dataStr += Delimiter + str(seq[StepNo]['fStrb_A'])
-        dataStr += Delimiter + str(seq[StepNo]['fStrb_B'])
-        dataStr += Delimiter + str(seq[StepNo]['fStrb_C'])
-        dataStr += Delimiter + str(seq[StepNo]['fStrb_D'])
-        dataStr += Delimiter + str(seq[StepNo]['fStrb_E'])
-        dataStr += Delimiter + str(seq[StepNo]['lPattern'])
-        dataStr += Delimiter + str(seq[StepNo]['fStrb_H_On'])
-        dataStr += Delimiter + str(seq[StepNo]['fStrb_S_On'])
-        dataStr += Delimiter + str(seq[StepNo]['fStrb_L_On'])
-        dataStr += Delimiter + str(seq[StepNo]['fStrb_H_Off'])
-        dataStr += Delimiter + str(seq[StepNo]['fStrb_S_Off'])
-        dataStr += Delimiter + str(seq[StepNo]['fStrb_L_Off'])
-        dataStr += Delimiter + str(seq[StepNo]['lSeqTime'])
-        dataStr += ">"
+        if StepNo < len(seq):
+            # Load step paramters
+            dataStr = "<" + str(seq[StepNo]['iTypeC'])
+            dataStr += Delimiter + str(seq[StepNo]['fCtr_A'])
+            dataStr += Delimiter + str(seq[StepNo]['fCtr_B'])
+            dataStr += Delimiter + str(seq[StepNo]['fCtr_C'])
+            dataStr += Delimiter + str(seq[StepNo]['fCtr_D'])
+            dataStr += Delimiter + str(seq[StepNo]['fCtr_E'])
+            dataStr += Delimiter + str(seq[StepNo]['fCtr_H_On'])
+            dataStr += Delimiter + str(seq[StepNo]['fCtr_S_On'])
+            dataStr += Delimiter + str(seq[StepNo]['fCtr_L_On'])
+            dataStr += Delimiter + str(seq[StepNo]['fCtr_H_Off'])
+            dataStr += Delimiter + str(seq[StepNo]['fCtr_S_Off'])
+            dataStr += Delimiter + str(seq[StepNo]['fCtr_L_Off'])
+            dataStr += Delimiter + str(seq[StepNo]['iTypeS'])
+            dataStr += Delimiter + str(seq[StepNo]['fStrb_A'])
+            dataStr += Delimiter + str(seq[StepNo]['fStrb_B'])
+            dataStr += Delimiter + str(seq[StepNo]['fStrb_C'])
+            dataStr += Delimiter + str(seq[StepNo]['fStrb_D'])
+            dataStr += Delimiter + str(seq[StepNo]['fStrb_E'])
+            dataStr += Delimiter + str(seq[StepNo]['lPattern'])
+            dataStr += Delimiter + str(seq[StepNo]['fStrb_H_On'])
+            dataStr += Delimiter + str(seq[StepNo]['fStrb_S_On'])
+            dataStr += Delimiter + str(seq[StepNo]['fStrb_L_On'])
+            dataStr += Delimiter + str(seq[StepNo]['fStrb_H_Off'])
+            dataStr += Delimiter + str(seq[StepNo]['fStrb_S_Off'])
+            dataStr += Delimiter + str(seq[StepNo]['fStrb_L_Off'])
+            dataStr += Delimiter + str(seq[StepNo]['lSeqTime'])
+            dataStr += ">"
 
         # Start event from Arduino
-        if out[0:4] == b'C000' and start_cmd == True:
+        if out[0:4] == b'C000' and start_cmd == True and StepNo < len(seq):
             stdscr.addstr(5,2,'Sending step no.: ' + str(StepNo))
             stdscr.addstr(6,2,dataStr)
             ser.write(dataStr.encode('utf-8'))
@@ -126,14 +128,12 @@ def main(stdscr):
         # Collect next step
         if StepNo >= len(seq):
             stdscr.addstr(6,2,'Last step has been reached. Exit')
-            ser.close()
-            exit()
+            # exit()
 
         # Exit event from Arduino
         if out[0:4] == b'C999':
             stdscr.addstr(6,2,'Exit')
-            ser.close()
-            exit()
+            # exit()
             out = ''
 
         stdscr.refresh()

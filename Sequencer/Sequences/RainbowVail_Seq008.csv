@@ -1,0 +1,3 @@
+Step,iTypeC,fCtr_A,fCtr_B,fCtr_C,fCtr_D,fCtr_E,fCtr_H_On,fCtr_S_On,fCtr_L_On,fCtr_H_Off,fCtr_S_Off,fCtr_L_Off,iTypeS,fStrb_A,fStrb_B,fStrb_C,fStrb_D,fStrb_E,lPattern,fStrb_H_On,fStrb_S_On,fStrb_L_On,fStrb_H_Off,fStrb_S_Off,fStrb_L_Off,lSeqTime,Total time,Tot Sec,Hours,Minutes,Seconds,On,Off,On,Off,f_diff
+1,4.00,5.50,5.50,0.10,0.10,0.00,0.10,0.80,0.20,0.10,0.80,0.00,2.00,10.00,10.00,0.10,0.10,0.00,0.00,0.10,0.15,0.20,0.10,0.15,0.00,10000.00,0:0:20,20,0,0,20,0.15,0.02,0.15,0,0.2
+2,4.00,5.50,5.50,0.10,0.10,0.00,0.10,0.80,0.20,0.10,0.80,0.00,2.00,10.20,10.20,0.10,0.10,0.00,0.00,0.10,0.15,0.20,0.10,0.15,0.00,10000.00,,,,,,,,,,
