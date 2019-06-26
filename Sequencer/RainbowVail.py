@@ -26,6 +26,9 @@ def main(stdscr):
     Delimiter = ';'
     # Start command - when True, the sequence starts
     start_cmd = False
+    # Allow starting the sequencer loop. Can be changed to False
+    # in case the Goggles atr not connected to the USB port
+    start_loop = True
     # Sequnce start timestamp
     start_t = 0.0
     # Sequence bookmark
@@ -36,22 +39,29 @@ def main(stdscr):
     for line in reader:
         seq.append(line)
 
-    # Configure serial connection (the parameters differs idepending
-    # on the device you are connecting to)
-    ser = serial.Serial(
-        port='/dev/ttyUSB0',
-        baudrate=38400,
-        timeout=10)
     # Make getch non-blocking
     stdscr.nodelay(True)
     # Clear window
     stdscr.clear()
+    # Configure serial connection (the parameters differs idepending
+    # on the device you are connecting to)
+    try:
+        ser = serial.Serial(
+            port='/dev/ttyUSB0',
+            baudrate=38400,
+            timeout=10)
+    except:
+        print("Can't open USB port. Are the goggles connected?")
+        start_loop = False
+        stdscr.addstr(2,2,'GOGGLES CONNECTION ERROR. EXITING ...')
+        stdscr.refresh()
+        time.sleep(2)
 
     stdscr.addstr(10, 2, 'BOOKMARKS')
     stdscr.addstr(11, 2, '------------------------------------------------')
     # Start the loop of checking the keboard input
     # and communicating with Arduino
-    while True:
+    while start_loop:
         # Get key value
         k = stdscr.getch()
 
@@ -67,7 +77,7 @@ def main(stdscr):
         elif k == ord('q'):
             ser.close()
             break
-        elif k == ord('0'):
+        elif k == curses.KEY_DOWN:
             bookmarks.append('Elapsed time: '
                              + '{:4.1f}'.format(time.time() - start_t)
                              + 's       Step no.: ' + str(StepNo - 1))
@@ -128,6 +138,7 @@ def main(stdscr):
         # Collect next step
         if StepNo >= len(seq):
             stdscr.addstr(6,2,'Last step has been reached. Exit')
+            start_cmd = False
             # exit()
 
         # Exit event from Arduino
