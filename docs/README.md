@@ -7,3 +7,5 @@ Inspired by [Brion Gysin](https://en.wikipedia.org/wiki/Brion_Gysin), [William S
 * Helps with achieving altered states of mind, reduces anxiety, 
 * Developped and tested by community
 * Inexpensive
+* Accesing different levels consciousness and more relaxed states
+
