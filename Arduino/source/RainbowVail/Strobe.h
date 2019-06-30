@@ -231,6 +231,8 @@ class Strobe : public Adafruit_NeoPixel {
                 type2_CentreR(float f, float fill, float a, float phase, HSL c_on, HSL c_off),
                 type3_CentreL(float f_start, float f_end, float fill, float a, float phase, HSL c_on, HSL c_off, unsigned long ramp_time),
                 type3_CentreR(float f_start, float f_end, float fill, float a, float phase, HSL c_on, HSL c_off, unsigned long ramp_time),
+                type4_CentreL(float f, float fill, float phase, HSL c_on, HSL c_off),
+                type4_CentreR(float f, float fill, float phase, HSL c_on, HSL c_off),
                 
                 type1_StrobeL(HSL c_on),
                 type1_StrobeR(HSL c_on),
@@ -238,6 +240,8 @@ class Strobe : public Adafruit_NeoPixel {
                 type2_StrobeR(float f, float fill, float phase, HSL c_on, HSL c_off),
                 type3_StrobeL(unsigned long p, float f, float phase, HSL c_on, HSL c_off),
                 type3_StrobeR(unsigned long p, float f, float phase, HSL c_on, HSL c_off),
+                type4_StrobeL(float f, float fill, float phase, HSL c_on, HSL c_off),
+                type4_StrobeR(float f, float fill, float phase, HSL c_on, HSL c_off),
                 LoadStep(const LoadSeqStep &s);
     
                                 

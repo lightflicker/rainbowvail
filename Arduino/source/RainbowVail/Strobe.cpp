@@ -211,7 +211,8 @@ void Strobe::Sequencer()
         type3_CentreR(Step.fCtr_A, Step.fCtr_B, Step.fCtr_C, Step.fCtr_D, Step.fCtr_E, Step.hslCOn, Step.hslCOff, Step.lSeqTime);
         break;
       case 4:
-        //Function to run Type 4 Centre Light
+        type4_CentreL(Step.fCtr_A, Step.fCtr_C, Step.fCtr_D, Step.hslCOn, Step.hslCOff);
+        type4_CentreR(Step.fCtr_B, Step.fCtr_C, Step.fCtr_D, Step.hslCOn, Step.hslCOff);
         break;
       case 5:
         //Function to run Type 5 Centre Light
@@ -639,7 +640,84 @@ void Strobe::type3_CentreR(float f_start, float f_end, float fill, float a, floa
 }
 
 
+// CENTRE - TYPE 4
+// Same as TYPE 3 for the Stobe
 
+void Strobe::type4_CentreL(float f, float fill, float phase, HSL c_on, HSL c_off)
+{
+  double p;
+  static unsigned long time_start = millis();       //Record timestamp of the function start
+  double period = 1000.0 / f;                       //How long is the period of one cycle 1/f
+  double offset;
+  double pulse;
+  unsigned long start_time = millis() - time_start; //Calculation of the time differential between the start time and the current millisecond value
+
+  p = phase >= 0 ? phase : 0;
+
+  offset = period * p / 360.0;    //If the phase offset has been defined, it defines a delay in milliseconds before the flash starts
+  pulse = period * fill + offset;                     //How long is the flash pulse base on the PWM factor plus phase offset (if > 0)
+
+
+  if (start_time <= (unsigned long) offset)         //Starts the off period of the phase offset
+  {
+    colCentreL = c_off;
+  }
+
+  if ((start_time > (unsigned long) offset) && (start_time <= (unsigned long) pulse))           //Start the flash period
+  {
+    colCentreL = c_on;
+  }
+
+  if ((start_time > (unsigned long) pulse) && (start_time <= (unsigned long) period))           //Starts the off period
+  {
+    colCentreL = c_off;
+  }
+
+  if (start_time > (unsigned long) period) //Resets the time on the end of the cycle
+  {
+    time_start = millis();
+
+  }
+}
+
+void Strobe::type4_CentreR(float f, float fill, float phase, HSL c_on, HSL c_off)
+{
+  double p;
+  static unsigned long time_start = millis();       //Record timestamp of the function start
+  double period = 1000.0 / f;                       //How long is the period of one cycle 1/f
+  double offset;
+  double pulse;
+  unsigned long start_time = millis() - time_start; //Calculation of the time differential between the start time and the current millisecond value
+
+  p = phase < 0 ? phase * -1.0 : 0;
+
+  offset = period * p / 360.0;    //If the phase offset has been defined, it defines a delay in milliseconds before the flash starts
+  pulse = period * fill + offset;                     //How long is the flash pulse base on the PWM factor plus phase offset (if > 0)
+
+
+  if (start_time <= (unsigned long) offset)         //Starts the off period of the pahse offset
+  {
+    colCentreR = c_off;
+  }
+
+  if ((start_time > (unsigned long) offset) && (start_time <= (unsigned long) pulse))           //Start the flash period
+  {
+    colCentreR = c_on;
+  }
+
+  if ((start_time > (unsigned long) pulse) && (start_time <= (unsigned long) period))           //Starts the off period
+  {
+    colCentreR = c_off;
+  }
+
+  if (start_time > (unsigned long) period) //Resets the time on the end of the cycle
+  {
+    time_start = millis();
+
+  }
+}
+
+// --------------------------------------------------------------------------
 // STROBE - TYPE 1
 void Strobe::type1_StrobeL(HSL c_on)
 {
